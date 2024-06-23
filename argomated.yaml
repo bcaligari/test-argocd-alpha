@@ -1,0 +1,38 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: null
+  name: argomated
+spec: {}
+status: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: busyapp
+  name: busyapp
+  namespace: argomated
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: busyapp
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: busyapp
+    spec:
+      containers:
+      - command:
+        - /bin/tail
+        - -f
+        - /dev/null
+        image: busybox
+        name: busybox
+        resources: {}
+status: {}
